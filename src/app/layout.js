@@ -30,7 +30,10 @@ export default function RootLayout({ children }) {
           <Navigation />
           <section className="flex-grow ">
             {/* <HeroSection /> */}
-            <Container>{children}</Container>
+            {/* <Container> */}
+            {children}
+
+            {/* </Container> */}
           </section>
         </main>
       </body>

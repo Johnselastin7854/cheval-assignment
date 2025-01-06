@@ -11,7 +11,7 @@ const Navigation = () => {
   console.log(pathname, "jjj");
   const [isNavOpen, setIsNavOpen] = useState(false);
   return (
-    <header className="sticky top-0   z-10 bg-transparent">
+    <header className="sticky top-0   z-10 bg-red-400 border-b border-b-gray-300/50 w-full ">
       <Container>
         <nav className="flex items-center justify-between">
           <Link href={"/"}>
@@ -29,7 +29,7 @@ const Navigation = () => {
             {navList?.map((navLink, index) => (
               <li
                 key={index}
-                className="relative hover:cursor-pointer transition-all duration-300 text-md font-semibold"
+                className="relative hover:cursor-pointer text-white transition-all duration-300 text-md font-semibold"
               >
                 <Link
                   href={navLink.href}
@@ -52,14 +52,14 @@ const Navigation = () => {
             ))}
           </ul>
 
-          <button className="hidden md:block px-10 py-3 border-2 bg-transparent  border-red-500 rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
+          <button className="hidden md:block px-10 py-3 border-2 bg-transparent text-white    border-white rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
             Login
           </button>
           <button
             className="md:hidden"
             onClick={() => setIsNavOpen(!isNavOpen)}
           >
-            {isNavOpen ? <X color="#Dc2626" /> : <Menu color="#Dc2626" />}
+            {isNavOpen ? <X color="#fff" /> : <Menu color="#fff" />}
           </button>
 
           <div
