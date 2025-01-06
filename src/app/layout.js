@@ -1,8 +1,6 @@
 import localFont from "next/font/local";
 import "./globals.css";
-import Navigation from "./components/Navigation";
-import HeroSection from "./components/HeroSection";
-import Container from "./layout/Container";
+import Navigation from "@/components/Navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,13 +26,7 @@ export default function RootLayout({ children }) {
       >
         <main className="flex flex-col min-h-screen">
           <Navigation />
-          <section className="flex-grow ">
-            {/* <HeroSection /> */}
-            {/* <Container> */}
-            {children}
-
-            {/* </Container> */}
-          </section>
+          <section className="flex-grow ">{children}</section>
         </main>
       </body>
     </html>
