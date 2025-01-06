@@ -1,21 +1,38 @@
 "use client";
-import React, { useState } from "react";
-import Container from "../layout/Container";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { navList } from "@/data/navList";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { AiFillAppstore } from "react-icons/ai";
+import Container from "@/app/layout/Container";
+import { getNavItems } from "../../actions/getNavItems";
 const Navigation = () => {
   const pathname = usePathname();
-  console.log(pathname, "jjj");
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [navData, setNavData] = useState(null);
+
+  useEffect(() => {
+    const getNavData = async () => {
+      try {
+        const data = await getNavItems();
+        setNavData(data);
+      } catch (error) {
+        console.error("Error fetching navbar data:", error);
+      }
+    };
+
+    getNavData();
+  }, []);
+  console.log(navData, "kkk");
+
   return (
     <header className="sticky top-0   z-10 bg-red-400 border-b border-b-gray-300/50 w-full ">
       <Container>
         <nav className="flex items-center justify-between">
           <Link href={"/"}>
-            <Image
+            {/* <Image
               src={"/logo.png"}
               alt="find_Property_Logo"
               width={130}
@@ -23,7 +40,8 @@ const Navigation = () => {
               sizes="100vw"
               priority
               className="w-12 "
-            />
+            /> */}
+            <AiFillAppstore className="text-white w-8 h-8" />
           </Link>
           <ul className="hidden md:flex items-center gap-4">
             {navList?.map((navLink, index) => (
