@@ -1,27 +1,16 @@
+import { heroRoute } from "@/lib/constants/path";
+import { heroSectionQuery } from "@/lib/queries/homePageQueries";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-// import { FetchDataFromStrapi } from "../../actions/getDataFromStrapi"; // Ensure correct import
-import { heroSectionQuery } from "@/lib/queries/homePageQueries";
-import { heroRoute } from "@/lib/constants/path";
 import { FetchDataFromStrapi } from "../../actions/getDataFromStarpi";
 
-export async function getServerSideProps() {
+const HeroSection = async () => {
   const data = await FetchDataFromStrapi(heroSectionQuery, heroRoute);
-
-  return {
-    props: { data },
-  };
-}
-
-const HeroSection = ({ data }) => {
-  console.log(data);
-
   if (!data) return null;
-
   return (
     <section className="flex flex-col lg:flex-row h-screen">
-      <div className="flex-1 flex flex-col md:flex-row items-center p-6 md:p-12">
+      <div className="flex-1 flex flex-col md:flex-row  items-center  p-6 md:p-12">
         <div className="text-center md:text-left">
           <h2 className="md:text-2xl font-medium mb-6 pb-1 text-gray-400 border-b-2 border-gray-400">
             {data?.heading}
@@ -61,7 +50,7 @@ const HeroSection = ({ data }) => {
         </div>
       </div>
 
-      <div className="lg:w-[500px] bg-red-400 text-white flex flex-col items-center justify-center p-6 md:p-12">
+      <div className=" lg:w-[500px]   bg-red-400 text-white flex flex-col items-center justify-center p-6 md:p-12 ">
         <h1 className="text-2xl md:text-4xl font-bold text-center md:text-left mb-4 leading-6">
           {data?.right_heading}
         </h1>
