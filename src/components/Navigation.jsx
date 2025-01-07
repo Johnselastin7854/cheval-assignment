@@ -1,29 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { navList } from "@/data/navList";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Container from "@/app/layout/Container";
-import { getNavItems } from "../../actions/getNavItems";
-const Navigation = () => {
+const Navigation = ({ navData }) => {
   const pathname = usePathname();
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [navData, setNavData] = useState(null);
-
-  useEffect(() => {
-    const getNavData = async () => {
-      try {
-        const data = await getNavItems();
-        setNavData(data);
-      } catch (error) {
-        console.error("Error fetching navbar data:", error);
-      }
-    };
-
-    getNavData();
-  }, []);
 
   return (
     <header className="sticky top-0   z-10 bg-red-400 border-b border-b-gray-300/50 w-full ">
@@ -71,9 +55,12 @@ const Navigation = () => {
             ))}
           </ul>
 
-          <button className="hidden md:block px-10 py-3 border-2 bg-transparent text-white    border-white rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
-            {navData?.navbar?.cta?.text}
-          </button>
+          {navData?.navbar && (
+            <button className="hidden md:block px-10 py-3 border-2 bg-transparent text-white    border-white rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
+              {navData?.navbar?.cta?.text}
+            </button>
+          )}
+
           <button
             className="md:hidden"
             onClick={() => setIsNavOpen(!isNavOpen)}
@@ -114,9 +101,11 @@ const Navigation = () => {
               ))}
             </ul>
 
-            <button className="px-7 py-3 border-2 bg-transparent text-red-600  border-red-600 rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
-              {navData?.navbar?.cta?.text}
-            </button>
+            {navData?.navbar && (
+              <button className="px-7 py-3 border-2 bg-transparent text-red-600  border-red-600 rounded-tr-[30px] rounded-bl-[30px] text-md font-semibold">
+                {navData?.navbar?.cta?.text}
+              </button>
+            )}
           </div>
         </nav>
       </Container>
