@@ -5,8 +5,15 @@ import { FetchDataFromStrapi } from "../../actions/getDataFromStarpi";
 import { heroSectionQuery } from "@/lib/queries/homePageQueries";
 import { heroRoute } from "@/lib/constants/path";
 
-const HeroSection = async () => {
-  const data = await FetchDataFromStrapi(heroSectionQuery, heroRoute);
+export async function getServerSideProps() {
+  const res = FetchDataFromStrapi(heroSectionQuery, heroRoute);
+
+  return {
+    props: { data },
+  };
+}
+
+const HeroSection = async ({ data }) => {
   if (!data) return null;
   return (
     <section className="flex flex-col lg:flex-row h-screen">
