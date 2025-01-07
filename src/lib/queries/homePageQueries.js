@@ -33,3 +33,15 @@ export const heroSectionQuery = {
     },
   },
 };
+
+export const technologySectionQuery = {
+  populate: {
+    tech: {
+      populate: {
+        techImage: {
+          fields: ["url", "alternativeText", "name"],
+        },
+      },
+    },
+  },
+};
