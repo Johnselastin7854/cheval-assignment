@@ -9,8 +9,6 @@ const Navigation = ({ navData }) => {
   const pathname = usePathname();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-  console.log(navData?.navbar?.logo?.image?.url, "jj");
-
   return (
     <header className="sticky top-0   z-10 bg-red-400 border-b border-b-gray-300/50 w-full ">
       <Container>
